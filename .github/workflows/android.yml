@@ -1,4 +1,4 @@
- name: Build ONAMob Android for Google Play
+name: Build ONAMob Android for Google Play
 on:
   push:
     branches: [ main, master ]
@@ -41,4 +41,3 @@ jobs:
           # البحث في كل المجلدات الفرعية عن أي ملف ينتهي بـ .aab
           path: build/**/*.aab
           if-no-files-found: error
-      
