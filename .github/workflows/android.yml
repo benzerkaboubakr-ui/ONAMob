@@ -18,7 +18,7 @@ jobs:
       - name: Setup Flutter
         uses: subosito/flutter-action@v2
         with:
-          flutter-version: '3.24.0'
+          # سنترك النسخة فارغة ليقوم flet بتحميل النسخة التي يفضلها تلقائياً
           channel: 'stable'
 
       - name: Install Dependencies
@@ -28,15 +28,12 @@ jobs:
 
       - name: Build Android AAB
         run: |
-          # التأكد من التعرف على أمر flet وتشغيل البناء
+          # إضافة نعم تلقائياً لتجاوز سؤال تحميل Flutter
           export PATH="$PATH:$HOME/.local/bin"
-          flet build aab --product "ONAMob" --org "dz.ona"
+          yes | flet build aab --product "ONAMob" --org "dz.ona"
 
       - name: Upload Artifact
         uses: actions/upload-artifact@v4
         with:
           name: ONAMob-Android-Bundle
           path: build/android/aab/*.aab
-
-
-        
