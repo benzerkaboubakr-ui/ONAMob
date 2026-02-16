@@ -28,16 +28,13 @@ jobs:
       - name: Build Android AAB
         run: |
           export PATH="$PATH:$HOME/.local/bin"
-          # مسح أي بناء قديم لضمان نظافة المجلد
           rm -rf build
           yes | flet build aab --product "ONAMob" --org "dz.ona"
-          # عرض مكان الملف الناتج للتأكد (سيظهر في السجلات)
-          find build -name "*.aab"
 
       - name: Upload Artifact
         uses: actions/upload-artifact@v4
         with:
-          name: ONAMob-GooglePlay-Bundle
-          # البحث في كل المجلدات الفرعية عن أي ملف ينتهي بـ .aab
-          path: build/**/*.aab
+          name: ONAMob-Final-App
+          # تحديد الملف النهائي بدقة متناهية لتجنب حجم الـ 300 ميجا
+          path: build/android/aab/*.aab
           if-no-files-found: error
