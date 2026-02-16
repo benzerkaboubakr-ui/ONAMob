@@ -1,4 +1,4 @@
-name: Build ONAMob Android
+ name: Build ONAMob Android for Google Play
 on:
   push:
     branches: [ main, master ]
@@ -18,7 +18,6 @@ jobs:
       - name: Setup Flutter
         uses: subosito/flutter-action@v2
         with:
-          # سنترك النسخة فارغة ليقوم flet بتحميل النسخة التي يفضلها تلقائياً
           channel: 'stable'
 
       - name: Install Dependencies
@@ -28,12 +27,18 @@ jobs:
 
       - name: Build Android AAB
         run: |
-          # إضافة نعم تلقائياً لتجاوز سؤال تحميل Flutter
           export PATH="$PATH:$HOME/.local/bin"
+          # مسح أي بناء قديم لضمان نظافة المجلد
+          rm -rf build
           yes | flet build aab --product "ONAMob" --org "dz.ona"
+          # عرض مكان الملف الناتج للتأكد (سيظهر في السجلات)
+          find build -name "*.aab"
 
       - name: Upload Artifact
         uses: actions/upload-artifact@v4
         with:
-          name: ONAMob-Android-Bundle
-          path: build/android/aab/*.aab
+          name: ONAMob-GooglePlay-Bundle
+          # البحث في كل المجلدات الفرعية عن أي ملف ينتهي بـ .aab
+          path: build/**/*.aab
+          if-no-files-found: error
+      
