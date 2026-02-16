@@ -1,4 +1,3 @@
-
 name: Build ONAMob Android
 on:
   push:
@@ -29,10 +28,15 @@ jobs:
 
       - name: Build Android AAB
         run: |
-          python -m flet build aab --product "ONAMob" --org "dz.ona"
+          # التأكد من التعرف على أمر flet وتشغيل البناء
+          export PATH="$PATH:$HOME/.local/bin"
+          flet build aab --product "ONAMob" --org "dz.ona"
 
       - name: Upload Artifact
         uses: actions/upload-artifact@v4
         with:
           name: ONAMob-Android-Bundle
           path: build/android/aab/*.aab
+
+
+        
