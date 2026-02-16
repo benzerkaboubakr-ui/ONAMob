@@ -1,0 +1,22 @@
+project:
+  name: onamob
+  product: "ONAMob"
+  description: "تطبيق الديوان الوطني للتطهير لمتابعة شكاوى المواطنين"
+  org: "dz.ona"
+
+android:
+  package: "dz.ona.onamob"
+  version: "1.0.0"
+  build_number: 1
+  permissions:
+    - android.permission.INTERNET
+    - android.permission.CALL_PHONE
+  adaptive_icon_background: "#008751"
+  adaptive_icon_foreground: "assets/logo.png"
+
+windows:
+  product: "ONAMob"
+  company: "ONA"
+
+assets:
+  - assets/

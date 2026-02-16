@@ -1,0 +1,10 @@
+flask>=2.3.0
+flask-sqlalchemy>=3.0.0
+flask-login>=0.6.0
+werkzeug>=2.3.0
+cryptography>=41.0.0
+python-dotenv>=1.0.0
+requests>=2.31.0
+flask-wtf
+flask-limiter
+pyopenssl

@@ -1,0 +1,76 @@
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+    width: 6px;
+}
+::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+::-webkit-scrollbar-thumb {
+    background: hwb(157 0% 47%);
+    border-radius: 10px;
+}
+
+/* Animations */
+@keyframes bounce-subtle {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-5px); }
+}
+
+.animate-bounce-subtle {
+    animation: bounce-subtle 2s infinite ease-in-out;
+}
+
+/* Tab Content Transitions */
+.tab-content {
+    transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.hidden {
+    display: none;
+    opacity: 0;
+    transform: translateY(10px);
+}
+
+/* Leaflet Map Styling */
+#map {
+    z-index: 10;
+}
+
+.leaflet-popup-content-wrapper {
+    border-radius: 12px;
+    font-family: 'Cairo', sans-serif;
+}
+
+/* Form Elements */
+input::placeholder, select::placeholder {
+    color: #9ca3af;
+    font-size: 0.85rem;
+}
+
+/* Mobile App Specifics */
+body {
+    -webkit-tap-highlight-color: transparent;
+    user-select: none;
+}
+
+input, textarea {
+    user-select: text;
+}
+
+/* Dark Mode Overrides */
+.bg-gray-900 .bg-white {
+    background-color: #1f2937 !important;
+    color: white;
+}
+
+.bg-gray-900 .text-gray-600, .bg-gray-900 .text-gray-500 {
+    color: #9ca3af !important;
+}
+
+.bg-gray-900 .ring-gray-200 {
+    --tw-ring-color: #374151;
+}
+
+.bg-gray-900 .bg-gray-50 {
+    background-color: #111827;
+}
