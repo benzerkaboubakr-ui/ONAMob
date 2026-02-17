@@ -29,11 +29,16 @@ jobs:
       - name: Build Android APK
         run: |
           cp mobile_requirements.txt requirements.txt
-          echo "y" | flet build apk --product "ONAMob" --org "dz.ona" --include-assets assets/
+          echo "y" | flet build apk --product "ONAMob" --org "dz.ona" --assets assets
 
-      - name: Upload APK Artifact
+      - name: Build Android AAB
+        run: |
+          echo "y" | flet build aab --product "ONAMob" --org "dz.ona" --assets assets
+
+      - name: Upload Artifacts
         uses: actions/upload-artifact@v4
         with:
-          name: ONAMob-Android-APK
-          path: build/apk/*.apk
-
+          name: ONAMob-Android-Builds
+          path: |
+            build/apk/*.apk
+            build/aab/*.aab
