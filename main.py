@@ -109,24 +109,22 @@ def main(page: ft.Page):
         page.window_height = 800
     
     # اللغة الحالية (افتراضياً العربية)
-    page.session.set("lang", "ar")
+    current_lang = "ar"
     
     def get_text(key):
-        lang = page.session.get("lang")
-        return TRANSLATIONS[lang].get(key, key)
+        return TRANSLATIONS[current_lang].get(key, key)
 
     def change_lang(e):
-        current_lang = page.session.get("lang")
-        new_lang = "fr" if current_lang == "ar" else "ar"
-        page.session.set("lang", new_lang)
-        page.rtl = (new_lang == "ar")
+        nonlocal current_lang
+        current_lang = "fr" if current_lang == "ar" else "ar"
+        page.rtl = (current_lang == "ar")
         build_ui()
         page.update()
 
-    page.fonts = {
-        "Cairo": "https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&display=swap"
-    }
-    page.theme = ft.Theme(font_family="Cairo")
+    # page.fonts = {
+    #     "Cairo": "https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&display=swap"
+    # }
+    # page.theme = ft.Theme(font_family="Cairo")
 
     # عناصر واجهة المستخدم (تُنشأ مرة واحدة ويتم تحديث قيمها)
     name_input = ft.TextField(border_radius=10, prefix_icon=ft.icons.PERSON)
@@ -213,7 +211,7 @@ def main(page: ft.Page):
             if response.status_code == 200:
                 data = response.json()
                 status_text = data['complaint_status']
-                if page.session.get("lang") == "fr":
+                if current_lang == "fr":
                     status_text = {"جديد": "Nouveau", "قيد المعالجة": "En cours", "حل": "Résolu"}.get(status_text, status_text)
                 
                 track_result.controls.append(
@@ -259,7 +257,7 @@ def main(page: ft.Page):
         page.update()
 
     def build_ui():
-        lang = page.session.get("lang")
+        lang = current_lang
         page.rtl = (lang == "ar")
         
         # تحديث نصوص المدخلات
