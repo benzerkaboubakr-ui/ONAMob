@@ -28,10 +28,12 @@ jobs:
 
       - name: Build Android AAB
         run: |
-          python -m flet build aab --product "ONAMob" --org "dz.ona" --requirements mobile_requirements.txt
+          flet build aab --product "ONAMob" --org "dz.ona" --requirements mobile_requirements.txt
 
       - name: Upload Artifact
         uses: actions/upload-artifact@v4
         with:
           name: ONAMob-Android-Bundle
           path: build/aab/*.aab
+
+     
