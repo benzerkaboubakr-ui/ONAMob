@@ -29,11 +29,10 @@ jobs:
       - name: Build Android AAB
         run: |
           cp mobile_requirements.txt requirements.txt
-          flet build aab --product "ONAMob" --org "dz.ona"
+          flet build aab --product "ONAMob" --org "dz.ona" --no-prompt
 
       - name: Upload Artifact
         uses: actions/upload-artifact@v4
         with:
           name: ONAMob-Android-Bundle
           path: build/aab/*.aab
-
