@@ -26,13 +26,13 @@ jobs:
           python -m pip install --upgrade pip
           pip install flet requests
 
-      - name: Build Android AAB
+      - name: Build Android APK
         run: |
           cp mobile_requirements.txt requirements.txt
-          echo "y" | flet build aab --product "ONAMob" --org "dz.ona"
+          echo "y" | flet build apk --product "ONAMob" --org "dz.ona"
 
-      - name: Upload Artifact
+      - name: Upload APK Artifact
         uses: actions/upload-artifact@v4
         with:
-          name: ONAMob-Android-Bundle
-          path: build/aab/*.aab
+          name: ONAMob-Android-APK
+          path: build/apk/*.apk
